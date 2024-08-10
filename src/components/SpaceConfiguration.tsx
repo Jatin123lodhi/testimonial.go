@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import LivePreviewComponent from "./LivePreviewComponent";
 import SpaceCreationForm from "./SpaceCreationForm";
 import { defaultQuestions } from "@/constants";
-import { FormSchemaType } from "@/types";
-import { formSchema } from "@/schema";
+import { SpaceSchemaType } from "@/types";
+import { spaceSchema } from "@/schema";
 import { X } from "lucide-react";
 
 interface ISpaceConfigurationProps {
@@ -17,8 +17,8 @@ interface ISpaceConfigurationProps {
 const SpaceConfiguration = (props: ISpaceConfigurationProps) => {
   const { spaceConfigurationType, onCrossClick, onSubmit } = props;
 
-  const form = useForm<FormSchemaType>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<SpaceSchemaType>({
+    resolver: zodResolver(spaceSchema),
     defaultValues: {
       spaceName: "",
       spaceLogo: "",

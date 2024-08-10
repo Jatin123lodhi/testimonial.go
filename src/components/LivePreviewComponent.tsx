@@ -1,4 +1,4 @@
-import { FormSchemaType, questionSchemaType } from "@/types";
+import { SpaceSchemaType, questionSchemaType } from "@/types";
 import Image from "next/image";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";

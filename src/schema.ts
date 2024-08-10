@@ -6,7 +6,7 @@ export const questionSchema = z.object({
   text: z.string(),
 });
 
-export const formSchema = z.object({
+export const spaceSchema = z.object({
   spaceName: z.string().min(1, {
     message: "Required",
   }),

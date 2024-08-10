@@ -1,6 +1,16 @@
 import mongoose from "mongoose"; 
-import { questionSchema } from "./Question";
+
  
+export const questionSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+    required: true,
+  },
+  text: {
+    type: String,
+    required: true,
+  },
+});
 
 const spaceSchema = new mongoose.Schema({
   id: {

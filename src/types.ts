@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { formSchema, questionSchema, signInSchema, signupSchema } from "./schema";
+import { spaceSchema, questionSchema, signInSchema, signupSchema } from "./schema";
 
-export type FormSchemaType = z.infer<typeof formSchema>;
+export type SpaceSchemaType = z.infer<typeof spaceSchema>;
 export type questionSchemaType = z.infer<typeof questionSchema>;
 export type ViewState = "initial" | "creating" | "created" | "edit";
 export type AllowedStatus = 200 | 201 | 400 | 401 | 403 | 404 | 500;
