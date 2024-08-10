@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function succesResponse(
+export function successResponse(
   success: boolean,
   message: string,
   status: AllowedStatus,

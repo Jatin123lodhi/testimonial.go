@@ -2,7 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import {
   errorResponse,
   getValidationErrorMessages,
-  succesResponse,
+  successResponse,
 } from "@/lib/utils";
 import UserModel from "@/model/User";
 import { signupSchema } from "@/schema";
@@ -12,7 +12,7 @@ export const POST = async (request: Request) => {
   await dbConnect();
   try {
     const { username, email, password } = await request.json();
-    const parsedResult = signupSchema.safeParse({ email, password });
+    const parsedResult = signupSchema.safeParse({ username, email, password });
 
     if (!parsedResult.success) {
       const errorMessages = getValidationErrorMessages(parsedResult);
@@ -24,6 +24,7 @@ export const POST = async (request: Request) => {
       $or: [{ username }, { email }],
     });
     console.log(user, " hihi user");
+    
     if (user) {
       return errorResponse(
         false,
@@ -41,9 +42,10 @@ export const POST = async (request: Request) => {
       email,
       password: hashedPassword,
     });
+    
     await newUser.save();
 
-    return succesResponse(true, "User created Successfully", 400, newUser);
+    return successResponse(true, "User created Successfully", 200, newUser);
   } catch (error) {
     console.error(`Error registering user ${error}`);
     return errorResponse(false, "Error registering user", 500);

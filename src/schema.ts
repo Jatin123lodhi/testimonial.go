@@ -23,6 +23,12 @@ export const formSchema = z.object({
 });
 
 export const signupSchema = z.object({
+  username: z.string().min(4),
+  email: z.string().email(),
+  password: z.string().min(6),
+});
+
+export const signInSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
 });

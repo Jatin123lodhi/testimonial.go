@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { formSchema, questionSchema } from "./schema";
+import { formSchema, questionSchema, signInSchema, signupSchema } from "./schema";
 
 export type FormSchemaType = z.infer<typeof formSchema>;
 export type questionSchemaType = z.infer<typeof questionSchema>;
@@ -18,3 +18,6 @@ export interface ApiResponse {
   data?: object;
   errors?: ErrorDetail[]  
 }
+
+export type signInFormType = z.infer<typeof signInSchema>
+export type signupFormType = z.infer<typeof signupSchema>
