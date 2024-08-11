@@ -1,4 +1,5 @@
 import mongoose from "mongoose"; 
+import { testimonialSchema } from "./Testimonial";
 
  
 export const questionSchema = new mongoose.Schema({
@@ -13,10 +14,6 @@ export const questionSchema = new mongoose.Schema({
 });
 
 const spaceSchema = new mongoose.Schema({
-  id: {
-    type: mongoose.Schema.Types.ObjectId,
-    auto: true,
-  },
   spaceName: {
     type: String,
     required: true,
@@ -50,8 +47,11 @@ const spaceSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  testimonials: {
+    type: [testimonialSchema],
+    default: [],
+  },
 });
 
-export const Space = mongoose.model('Space', spaceSchema);
-
-
+export const Space = mongoose.models.Space || mongoose.model('Space', spaceSchema);
+ 

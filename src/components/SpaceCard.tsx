@@ -25,7 +25,7 @@ export const SpaceCard = (props: SpaceCardProps) => {
         console.log("navigate");
         router.push('/products/abc')
       }}
-      className="cursor-pointer hover:shadow-lg flex my-4 bg-slate-200 rounded-md"
+      className="cursor-pointer hover:shadow-lg flex my-4 bg-slate-200 rounded-md sm:min-w-[400px]"
     >
       <div className="">
         <Image

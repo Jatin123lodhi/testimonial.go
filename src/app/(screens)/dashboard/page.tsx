@@ -16,9 +16,11 @@ const Dashboard = () => {
       {currentViewState === "initial" && (
         <div>
           <div className="text-3xl font-semibold mt-[5%]">Overview</div>
+          <div className="sm:flex sm:flex-row sm:gap-5 w-full">
           <OverviewCards title="Videos" count={0} />
           <OverviewCards title="Video credits" count={0} />
           <OverviewCards title="Plan" description="Free plan" />
+          </div>
 
           <div className="mt-12 flex justify-between items-center">
             <div className="text-3xl font-semibold">Spaces</div>
@@ -32,7 +34,7 @@ const Dashboard = () => {
             </div>
           </div>
           {/* list of created space  */}
-          <div className="mt-8">
+          <div className="mt-8 sm:grid sm:grid-cols-3 sm:gap-5">
             {new Array(2).fill("").map((item, idx) => {
               return (
                 <SpaceCard

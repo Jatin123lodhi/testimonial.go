@@ -1,20 +1,11 @@
 import mongoose from "mongoose";
 
-const testimonialSchema = new mongoose.Schema({
-  id: {
-    type: mongoose.Schema.Types.ObjectId,
-    auto: true,
-  },
+export const testimonialSchema = new mongoose.Schema({
   rating: {
     type: Number,
     required: true,
     min: 1,
     max: 5,
-  },
-  text: {
-    type: String,
-    required: true,
-    trim: true,
   },
   email: {
     type: String,
@@ -39,6 +30,14 @@ const testimonialSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  contentType: {
+    type: String,
+    enum: ["Text", "Video"],
+    required: true,
+  },
+  content: {
+    type: String, // URL for video or the text content itself
+    required: true,
+  },
 });
 
-export const Testimonial = mongoose.model('Testimonial', testimonialSchema);

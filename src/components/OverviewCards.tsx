@@ -8,7 +8,7 @@ interface OverviewCardsProps{
 const OverviewCards = (props: OverviewCardsProps) => {
   const {title,count,description} = props;
   return (
-    <div className=" border p-4 my-4 rounded-md bg-slate-100">
+    <div className=" border p-4 my-4 rounded-md bg-slate-100 flex-1">
       <div>{title}</div>
       <div className="font-semibold text-xl">{count}</div>
       <div className="font-semibold text-lg">{description}</div>

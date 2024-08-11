@@ -44,3 +44,46 @@ export const POST = async (request: Request) => {
     return errorResponse(false,'Internal Server Error : '+ String(error),500);
   }
 };
+
+export const GET = async (request: Request) => {
+  await dbConnect();
+
+  const spacesWithTestimonialCounts = await Space.aggregate([
+    {
+      $unwind: {
+        path: "$testimonials",
+        preserveNullAndEmptyArrays: true, // Keep spaces with no testimonials
+      },
+    },
+    {
+      $group: {
+        _id: "$_id", // Group by Space ID
+        spaceName: { $first: "$spaceName" }, // Preserve spaceName
+        spaceLogo: { $first: "$spaceLogo" }, // Preserve spaceLogo
+        textCount: {
+          $sum: {
+            $cond: [{ $eq: ["$testimonials.contentType", "Text"] }, 1, 0],
+          },
+        },
+        videoCount: {
+          $sum: {
+            $cond: [{ $eq: ["$testimonials.contentType", "Video"] }, 1, 0],
+          },
+        },
+      },
+    },
+    {
+      $project: {
+        _id: 1,
+        spaceName: 1,
+        spaceLogo: 1,
+        textCount: 1,
+        videoCount: 1,
+      },
+    },
+  ]);
+  
+  
+  console.log(spacesWithTestimonialCounts, 'spaceList');
+  return successResponse(true,'Spaces reterived Successfully',200,spacesWithTestimonialCounts)
+}
